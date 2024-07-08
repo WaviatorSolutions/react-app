@@ -31,6 +31,6 @@ jobs:
 
     - name: Deploy to Server
       env:
-        DEPLOY_PATH: /home/u980123932/public_html  # Update with your deployment path
+        DEPLOY_PATH: /home/u980123932/public_html/test  # Update with your deployment path
       run: |
         rsync -av --delete ./ $DEPLOY_PATH
