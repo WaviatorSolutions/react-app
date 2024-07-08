@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -26,5 +26,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm i
+    - run: npm install
     - run: npm run build --if-present
+
+    - name: Deploy to Server
+      env:
+        DEPLOY_PATH: /home/u980123932/public_html  # Update with your deployment path
+      run: |
+        rsync -av --delete ./ $DEPLOY_PATH
